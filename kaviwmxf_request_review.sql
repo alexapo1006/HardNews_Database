@@ -2,10 +2,10 @@
 -- version 4.0.10.7
 -- http://www.phpmyadmin.net
 --
--- Gazda: localhost:3306
--- Timp de generare: 17 Noi 2015 la 20:39
--- Versiune server: 5.6.27
--- Versiune PHP: 5.4.31
+-- Host: localhost:3306
+-- Generation Time: Nov 17, 2015 at 08:47 PM
+-- Server version: 5.6.27
+-- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Bază de date: `kaviwmxf_request_review`
+-- Database: `kaviwmxf_request_review`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Salvarea datelor din tabel `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`CategoryID`, `CategoryName`, `ItemsCount`, `Area`) VALUES
@@ -54,7 +54,7 @@ INSERT INTO `category` (`CategoryID`, `CategoryName`, `ItemsCount`, `Area`) VALU
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `manufacturer`
+-- Table structure for table `manufacturer`
 --
 
 CREATE TABLE IF NOT EXISTS `manufacturer` (
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `manufacturer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Salvarea datelor din tabel `manufacturer`
+-- Dumping data for table `manufacturer`
 --
 
 INSERT INTO `manufacturer` (`ManufacturerID`, `ManufacturerName`, `Address`, `MPhoneNo`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `manufacturer` (`ManufacturerID`, `ManufacturerName`, `Address`, `MP
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE IF NOT EXISTS `product` (
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
--- Salvarea datelor din tabel `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`ProductID`, `ManufacturerID`, `CategoryID`, `ProductName`) VALUES
@@ -141,7 +141,7 @@ INSERT INTO `product` (`ProductID`, `ManufacturerID`, `CategoryID`, `ProductName
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `reader`
+-- Table structure for table `reader`
 --
 
 CREATE TABLE IF NOT EXISTS `reader` (
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `reader` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
 
 --
--- Salvarea datelor din tabel `reader`
+-- Dumping data for table `reader`
 --
 
 INSERT INTO `reader` (`ReaderID`, `Name`, `Email`, `PhoneNo`) VALUES
@@ -191,7 +191,7 @@ INSERT INTO `reader` (`ReaderID`, `Name`, `Email`, `PhoneNo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `request`
+-- Table structure for table `request`
 --
 
 CREATE TABLE IF NOT EXISTS `request` (
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `request` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
--- Salvarea datelor din tabel `request`
+-- Dumping data for table `request`
 --
 
 INSERT INTO `request` (`RequestID`, `ReaderID`, `Date`, `Status`) VALUES
@@ -244,7 +244,7 @@ INSERT INTO `request` (`RequestID`, `ReaderID`, `Date`, `Status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structura de tabel pentru tabelul `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE IF NOT EXISTS `review` (
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `review` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
--- Salvarea datelor din tabel `review`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`ReviewID`, `RequestID`, `ProductID`) VALUES
@@ -294,24 +294,24 @@ INSERT INTO `review` (`ReviewID`, `RequestID`, `ProductID`) VALUES
 (32, 25, 1);
 
 --
--- Restrictii pentru tabele sterse
+-- Constraints for dumped tables
 --
 
 --
--- Restrictii pentru tabele `product`
+-- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`ManufacturerID`) REFERENCES `manufacturer` (`ManufacturerID`),
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`CategoryID`) REFERENCES `category` (`CategoryID`);
 
 --
--- Restrictii pentru tabele `request`
+-- Constraints for table `request`
 --
 ALTER TABLE `request`
   ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`ReaderID`) REFERENCES `reader` (`ReaderID`);
 
 --
--- Restrictii pentru tabele `review`
+-- Constraints for table `review`
 --
 ALTER TABLE `review`
   ADD CONSTRAINT `review_ibfk_3` FOREIGN KEY (`RequestID`) REFERENCES `request` (`RequestID`),
